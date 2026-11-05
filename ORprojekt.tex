@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\begin{document}
+
+\section{Bogato barvanje povezav}
+
+V teoriji grafov je barvanje povezav preslikava, ki vsaki povezavi grafa priredi barvo. 
+Naj bo $G = (V,E)$ graf, kjer $V(G)$ predstavlja množico vozlišč in $E(G)$ predstavlja množico povezav med vozlišči grafa $G$.
+Naj bo $k$ naravno število. Rečemo, da je graf $G$ \textit{povezavno k-obarvljiv}, če obstaja preslikava $c:E(G) \rightarrow \left\{1,2,...,k\right\}$ z lastnostjo
+\[\forall e, f \in E(G): e \cap f \neq \emptyset \Rightarrow c(e) \neq c(f).\] Vsaki dve povezavi s skupnim krajiščem pobarvamo z različnima barvama. To imenujemo pravilno barvanje povezav (proper edge-coloring).
+\textit{Bogato barvanje povezav} (rich edge-coloring) je posebna vrsta pravilnega barvanja povezav, kjer
+ima vsako neizolirano vozlišče vsaj eno incidenčno bogato povezavo. 
+Povezava pa je \textit{bogata}, ko so vsi njeni sosedi paroma različne barve.
+
+\vspace{\baselineskip}
+Pri takšnem barvanju povezav nas zanima predvsem, kolikšno je najmanjše število barv, ki jih potrebujemo, da obarvamo povezave grafa.
+\textit{Bogati kromatični indeks} grafa $G$ je \[\chi'_r(G) = \min \left\{k \in \mathbb{N} | \text{G je povezavno k-obarvljiv}\right\}.\]
+
+V projektu bomo obravnavali povezane subkubične grafe, torej grafe, v katerih ima vsako vozlišče stopnjo največ tri. Osredotočili se bomo na domnevo Deng, Zhou in Zhu, po kateri za vsak povezan subkubičen graf $G$, ki ni
+$H_0$, velja $\chi'_r(G) \leq 5$. Graf $H_0$ dobimo iz popolnega grafa $K_4$ z razdelitvijo ene povezave z novim vozliščem; zanj velja $\chi'_r(H_0)=6$.
+
+\vspace{\baselineskip}
+Naše delo bo razdeljeno na tri naloge.
+
+\begin{enumerate}
+    \item Najprej bomo napisali program, ki za dan graf $G$ in naravno število $k$ preveri, ali obstaja bogato barvanje povezav grafa $G$ z največ $k$ barvami. Če takšno barvanje obstaja, ga program tudi vrne.
+    Problem bomo rešili na dva načina: s celoštevilskim linearnim programom (ILP) in s prevedbo na problem izpolnjivosti logičnih formul (SAT).
+    Obe metodi bomo nato primerjali glede na čas izvajanja v odvisnosti od števila vozlišč grafa.
+
+    \item V drugem delu bomo domnevo preverili na čim več družinah subkubičnih grafov, in sicer na čim večjih grafih. Možne družine grafov so:
+    \begin{itemize}
+        \item prizme $C_n \square K_2$,
+        \item Möbiusove lestve (cirkulanti $C_{2n}(1,n)$),
+        \item posplošeni Petersenovi grafi $P(n,k)$,
+        \item ravninski kubični grafi (generirani s programom \texttt{geng} in testom ravninskosti),
+        \item fulereni,
+        \item snarki (na primer iz zbirke House of Graphs).
+    \end{itemize}
+
+    \item V tretjem delu bomo domnevo preverili na vseh povezanih subkubičnih grafih z majhnim številom vozlišč, ki jih bomo generirali s programom \texttt{geng}. Šli bomo do čim večjega števila vozlišč $n$.
+    Za vsak $n$ bomo zabeležili največjo vrednost $\chi'_r(G)$, število grafov, ki potrebujejo pet barv in seznam vseh grafov, ki potrebujejo šest ali več barv.
+\end{enumerate}
+
+
+
+% https://urbanjezernik.github.io/diskretne-strukture/content/chapter05.html#barvanja-grafov
+
+
+\end{document}
