@@ -11,7 +11,8 @@ from sage.all import Graph
 
 def color(col, u, v):
     """Vrne barvo povezave uv.
-    col...slovar {(u, v): barva}, ključ je lahko (u, v) ali (v, u)."""
+    col...slovar {(u, v): barva}, ključ je lahko (u, v) ali (v, u).
+    Če med u in v ni povezave, funkcija vrene Error."""
     return col[(u, v)] if (u, v) in col else col[(v, u)]
 
 
