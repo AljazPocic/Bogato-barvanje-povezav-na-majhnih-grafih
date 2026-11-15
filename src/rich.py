@@ -1,10 +1,11 @@
-"""Preverjanje bogatih barvanj povezav.
-S to funkcijo preverimo vsako barvanje, ki ga vrneta ILP ali SAT.
+"""Osnovne funkcije za bogata barvanja povezav: preverjanje in spodnja meja.
+Z is_rich_coloring preverimo vsako barvanje, ki ga vrneta ILP ali SAT.
 
 Uporaba:
-    from src.rich import is_rich_coloring
+    from src.rich import is_rich_coloring, lower_bound
     G = graphs.CompleteGraph(4)
-    is_rich_coloring(G, col)   # col: slovar {(u, v): barva}"""
+    is_rich_coloring(G, col)   # col: slovar {(u, v): barva}
+    lower_bound(G)             # 5"""
 
 from sage.all import Graph
 
@@ -45,3 +46,21 @@ def is_rich_coloring(G, col):
             return False
 
     return True
+
+
+def lower_bound(G):
+    """Vrne spodnjo mejo za bogati kromatični indeks.
+    Meja je max(Δ, max_v min_{u ∈ N(v)} (d(u) + d(v) - 1))."""
+
+    # Pravilno barvanje potrebuje vsaj Δ barv
+    meja = max(G.degree(), default=0)
+
+    # Vozlišče v potrebuje bogato povezavo vu. Ta in njeni sosedje so paroma
+    # različnih barv kar je d(u) + d(v) - 1 barv. Vozlišče v si izbere
+    # najugodnejšega soseda (min), meja pa mora veljati za vsa v (max)
+    for v in G:
+        if G.degree(v) > 0:  # izloirane preskočimo
+            najmanj = min(G.degree(u) + G.degree(v) - 1 for u in G.neighbors(v))
+            meja = max(meja, najmanj)
+
+    return meja
