@@ -11,10 +11,10 @@ from sage.numerical.mip import MIPSolverException
 from src.rich import is_rich_coloring, lower_bound
 
 
-def rich_coloring_ilp(G, k, solver=None):
+def rich_coloring_ilp(G, k, solver="GLPK"):
     """Vrne bogato barvanje povezav grafa G s k barvami
     kot slovar {(u, v): barva} ali None, če tako barvanje ne obstaja.
-    solver...None pomeni privzeti GLPK.
+    solver..."GLPK" (privzeto).
     Spremenljivke (binarne):
         x[e, c] = 1  natanko tedaj, ko ima povezava e barvo c,
         r[e] = 1  pomeni, da zahtevamo, da je e bogata."""
@@ -71,7 +71,7 @@ def rich_coloring_ilp(G, k, solver=None):
     return {e: c for e in E for c in range(k) if X[e, c] > 0.5}
 
 
-def rich_chromatic_index_ilp(G, solver=None):
+def rich_chromatic_index_ilp(G, solver="GLPK"):
     """Vrne par (χ'_r(G), bogato barvanje s χ'_r(G) barvami).
     Začne pri spodnji meji in povečuje k dokler ILP ne najde barvanja"""
     k = lower_bound(G)
