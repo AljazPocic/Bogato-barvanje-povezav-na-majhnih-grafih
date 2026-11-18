@@ -1,0 +1,2 @@
+# klicanje funkcij in dodajanje
+
