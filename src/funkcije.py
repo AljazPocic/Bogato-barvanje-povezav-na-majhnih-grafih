@@ -184,4 +184,5 @@ def zapis_csv(G, druzina, parametri, pot_csv=CSV_POT):
         # shranimo vrstico:
         shrani_v_csv(vrstica, pot_csv)
         rezultati[metoda] = rezultat
+#    return rezultati
     
