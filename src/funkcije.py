@@ -9,10 +9,6 @@ from src.ilp import rich_chromatic_index_ilp
 from src.sat import rich_chromatic_index_sat
 
 
-from src.rich import lower_bound
-from src.ilp import rich_chromatic_index_ilp
-from src.sat import rich_chromatic_index_sat
-
 
 ##########################################################################################################################
 # H_0
@@ -126,7 +122,7 @@ def izracunaj_z_metodo(G, metoda):
 
         elif metoda == "SAT":
             kr_indeks, barvanje = rich_chromatic_index_sat(G)
-            
+
         # izračunan čas izvajanja:
         cas = perf_counter() - zacetek
         # funkcija vrne slovar z petimi podatki
@@ -152,7 +148,6 @@ def izracunaj_z_metodo(G, metoda):
 
 
 # glavna funkcija
-
 def zapis_csv(G, druzina, parametri, pot_csv=CSV_POT):
     """Graf G preveri z metodama ILP in SAT. Rezultate obeh metod shrani v CSV datoteko."""
     # preverimo, ali je graf povezan:
