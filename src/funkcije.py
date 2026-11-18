@@ -58,12 +58,13 @@ def preveri_stopnjo(G):
 # funkcija, ki testira posamezen graf
 
 
-# pisanje csv datoteke, kjer ena vrstica = en graf
+# pisanje csv datoteke, kjer ena vrstica = ena metoda na enem grafu
+# za vsak graf dve vrstici z dvema metodama
 
-# v vrstci: družina grafov, parametri(n,k,_), število vozlišč, število povezav, ali je graf izomorfen H_0, spodnja meja, kubičnost, graph6 ()= da ga lahko poustvarimo)
+
+# v vrstci: družina grafov, parametri(n,k,...), število vozlišč, število povezav, ali je graf izomorfen H_0, spodnja meja, kubičnost, graph6 (= da ga lahko poustvarimo) = nevem če to rabimo
 # metoda(ILP ali SAT): za vsako bogato barvanje 5(ali obstaja bogato barvanje z največ 5 = DA/NE) in bogati kromatični indeks(natančno
 # najmanjše število barv), čas izvajanja v sekundah
-# za vsak graf dve vrstici z dvema metodama
 
 
 # POPRAVI IMENA IN TUDI V CSV DATOTEKI
