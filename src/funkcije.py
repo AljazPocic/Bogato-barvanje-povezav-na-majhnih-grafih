@@ -149,8 +149,8 @@ def izracunaj_z_metodo(G, metoda):
 
 
 # glavna funkcija
-def zapis_csv(G, druzina, parametri, pot_csv=CSV_POT):
-    """Graf G preveri z metodama ILP in SAT. Rezultate obeh metod shrani v CSV datoteko."""
+def zapis_csv(G, druzina, parametri, metoda, pot_csv=CSV_POT):
+    """Graf G preveri z izbrano metodo (ILP ali SAT) in rezultat shrani v CSV."""
     # preverimo, ali je graf povezan:
     if not G.is_connected():
         raise ValueError("Graf ni povezan.")
@@ -170,19 +170,17 @@ def zapis_csv(G, druzina, parametri, pot_csv=CSV_POT):
         "subkubicen": "DA" if subkubicen else "NE",
         "kubicen": "DA" if kubicen else "NE"
     }
-    # tukaj bomo shranili rezultate za obe metodi:
-    rezultati = {}
-    # pogledamo obe metodi preko for zanke:
-    for metoda in ("ILP", "SAT"):
-        rezultat = izracunaj_z_metodo(G, metoda)
-        # pripravimo vrstico za CSV:
-        vrstica = {
-            **skupni_podatki,
-            "metoda": metoda,
-            **rezultat
-        }
-        # shranimo vrstico:
-        shrani_v_csv(vrstica, pot_csv)
-        rezultati[metoda] = rezultat
-#    return rezultati
-    
+    # izvedemo samo izbrano metodo
+    rezultat = izracunaj_z_metodo(G, metoda)
+
+    # pripravimo vrstico za CSV
+    vrstica = {
+        **skupni_podatki,
+        "metoda": metoda,
+        **rezultat
+    }
+    # shranimo vrstico:
+    shrani_v_csv(vrstica, pot_csv)
+    # return rezultat
+
+
