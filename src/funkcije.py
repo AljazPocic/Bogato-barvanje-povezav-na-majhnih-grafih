@@ -4,7 +4,6 @@ import csv
 from pathlib import Path
 from time import perf_counter
 
-from src.rich import lower_bound
 from src.ilp import rich_chromatic_index_ilp
 from src.sat import rich_chromatic_index_sat
 
@@ -62,7 +61,7 @@ def preveri_stopnjo(G):
 # za vsak graf dve vrstici z dvema metodama
 
 
-# v vrstci: družina grafov, parametri(n,k,...), število vozlišč, število povezav, ali je graf izomorfen H_0, spodnja meja, kubičnost, graph6 (= da ga lahko poustvarimo) = nevem če to rabimo
+# v vrstci: družina grafov, parametri(n,k,...), število vozlišč, število povezav, ali je graf izomorfen H_0, kubičnost,
 # metoda(ILP ali SAT): za vsako bogato barvanje 5(ali obstaja bogato barvanje z največ 5 = DA/NE) in bogati kromatični indeks(natančno
 # najmanjše število barv), čas izvajanja v sekundah
 
@@ -74,12 +73,10 @@ CSV_POLJA = [
     "st_vozlisc",
     "st_povezav",
     "je_H0",
-    "spodnja_meja",
     "metoda",
     "barvanje_5",
     "kr_indeks",
     "cas_s",
-    "graph6",
     "subkubicen",
     "kubicen",
     "status",
@@ -165,8 +162,6 @@ def zapis_csv(G, druzina, parametri, metoda, pot_csv=CSV_POT):
         "st_vozlisc": G.order(),
         "st_povezav": G.size(),
         "je_H0": "DA" if je_H0(G) else "NE",
-        "spodnja_meja": int(lower_bound(G)),
-        "graph6": G.graph6_string(),
         "subkubicen": "DA" if subkubicen else "NE",
         "kubicen": "DA" if kubicen else "NE"
     }
