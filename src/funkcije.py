@@ -85,6 +85,12 @@ CSV_POLJA = [
 
 KOREN_PROJEKTA = Path(__file__).resolve().parent.parent
 CSV_POT = KOREN_PROJEKTA / "rezultati" / "rezultati.csv"
+CSV_POT1 = KOREN_PROJEKTA / "rezultati" / "rezultati1.csv"
+CSV_POT2 = KOREN_PROJEKTA / "rezultati" / "rezultati2.csv"
+CSV_POT3 = KOREN_PROJEKTA / "rezultati" / "rezultati3.csv"
+CSV_POT4 = KOREN_PROJEKTA / "rezultati" / "rezultati4.csv"
+CSV_POT5 = KOREN_PROJEKTA / "rezultati" / "rezultati5.csv"
+
 
 def shrani_v_csv(vrstica, pot=CSV_POT):
     """Doda eno vrstico v obstoječo CSV datoteko."""

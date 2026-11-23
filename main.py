@@ -1,6 +1,6 @@
 # klicanje funkcij in dodajanje
 from src.subkubicni import prizma, posplosen_petersonov, mobiusova_lestev, ravninski_subkubicni, fulereni
-from src.funkcije import zapis_csv
+from src.funkcije import CSV_POT1, CSV_POT2, CSV_POT3, CSV_POT4, CSV_POT5, zapis_csv
 
 ##########################################################################################################################
 # PRIZME
@@ -11,10 +11,8 @@ from src.funkcije import zapis_csv
 
 
 
-
 ##########################################################################################################################
 # MÖBIUSOVE LESTVE(CIRKULANTI C_(2n)(1,n))
-
 
 
 
@@ -34,7 +32,7 @@ from src.funkcije import zapis_csv
 
 ##########################################################################################################################
 # RAVNINSKI SUBKUBIČNI IN KUBIČNI GRAFI
-# kubični graf mora imeti sodo število n, vsaj 4
+
 
 
 
