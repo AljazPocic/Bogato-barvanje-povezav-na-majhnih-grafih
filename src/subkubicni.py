@@ -67,23 +67,21 @@ def posplosen_petersonov(n, k):
 
 
 ##########################################################################################################################
-# tukaj se moramo odločiti, ali dodamo tudi subkubične ravninske
+# RAVNINSKI KUBIČNI GRAFI
 
-# # RAVNINSKI KUBIČNI GRAFI
-# 
-# 
-# # n mora biti vsaj 4 in sodo
-# def ravninski_kubicni(n):
-#     """Generira povezane ravninske kubične grafe z n vozlišči."""
-#     # st. vozlisc mora biti sodo:
-#     if n < 4 or n % 2 != 0:
-#         raise ValueError("n mora biti sodo število >= 4.")
-#     # vsi povezani kubični:
-#     generator = graphs.nauty_geng(f"{n} -c -d3 -D3") # -d3 nam pove najmanj 3 povezave, -D3 nam pove največ 3 povezave
-#     # izberemo samo ravninske:
-#     for G in generator:
-#         if G.is_planar():
-#             yield G
+
+# n mora biti vsaj 4 in sodo
+def ravninski_kubicni(n):
+    """Generira povezane ravninske kubične grafe z n vozlišči."""
+    # st. vozlisc mora biti sodo:
+    if n < 4 or n % 2 != 0:
+        raise ValueError("n mora biti sodo število >= 4.")
+    # vsi povezani kubični:
+    generator = graphs.nauty_geng(f"{n} -c -d3 -D3") # -d3 nam pove najmanj 3 povezave, -D3 nam pove največ 3 povezave
+    # izberemo samo ravninske:
+    for G in generator:
+        if G.is_planar():
+            yield G
 
 
 
