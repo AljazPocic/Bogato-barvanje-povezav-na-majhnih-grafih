@@ -52,22 +52,24 @@ from src.funkcije import CSV_POT1, CSV_POT2, CSV_POT3, CSV_POT4, CSV_POT5, zapis
 
 
 # kubični graf mora imeti sodo število n, vsaj 4
-for n in range(4, 21, 2): # n bodo soda števila med 4 in 20
+# for n in range(4, 21, 2): # n bodo soda števila med 4 in 20
+# 
+#     for i, G in enumerate(ravninski_kubicni(n), start=1):
+# 
+#         for metoda in ("ILP", "SAT"):
+# 
+#             zapis_csv(
+#                 G,
+#                 druzina="ravninski_kubicni",
+#                 parametri=f"n={n},graf={i}",
+#                 metoda=metoda,
+#                 pot_csv=CSV_POT4
+#             )
+#  
+#     print(f"Število vozlišč: {n}")
 
-    for i, G in enumerate(ravninski_kubicni(n), start=1):
-
-        for metoda in ("ILP", "SAT"):
-
-            zapis_csv(
-                G,
-                druzina="ravninski_kubicni",
-                parametri=f"n={n}, graf={i}",
-                metoda=metoda,
-                pot_csv=CSV_POT4
-            )
-
-    print(f"Število vozlišč: {n}")
-
+# opravljeno testiranje za kubične ravninske grafe s 4, 6, 8, 10, 12, 14, 16, 18 in 20 vozlišči
+# rezultati so shranjeni v "rezultati4.csv"
 
 
 
