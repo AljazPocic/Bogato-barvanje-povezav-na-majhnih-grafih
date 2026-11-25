@@ -63,10 +63,58 @@ def testiraj_prizme(n_od, n_do, korak=1, pot_csv=CSV_POT1):
 
 ##########################################################################################################################
 # POSPLOŠENI PETERSONOVI GRAFI P(n,k)
+# pogoj: n >= 3 in 1 <= k < n/2 (sicer graf ni kubičen); graf ima 2n vozlišč in 3n povezav
+# k = 1 izpustimo, ker je P(n,1) prizma C_n □ K_2 
+#
+# Pri istem n so lahko različni k izomorfni: P(n,k) ≅ P(n,l), če je k*l ≡ ±1 (mod n),
+# npr. P(7,2) ≅ P(7,3). Da istega grafa ne testiramo dvakrat, si za vsak n zapomnimo
+# kanonične oznake (graph6) že testiranih grafov in izomorfne duplikate preskočimo.
+# (Grafi z različnim n imajo različno število vozlišč, zato med njimi duplikatov ni.)
 
 
+def testiraj_petersen(n_od, n_do, korak=1, pot_csv=CSV_POT3):
+    """Testira Domnevo 2 na posplošenih Petersenovih grafih P(n,k), k >= 2, z metodo SAT.
 
+    Za vsak n testira vse k = 2, ..., floor((n-1)/2), pri čemer izomorfne duplikate
+    (pri istem n) preskoči. Rezultate zapiše v CSV.
 
+    n_od, n_do : najmanjši in največji n (OBE meji sta vključeni); P(n,k) ima 2n vozlišč.
+                 Prvi graf s k >= 2 je pri n = 5 (Petersenov graf P(5,2)).
+    korak      : razmik med zaporednimi n (privzeto 1)
+    pot_csv    : CSV datoteka, kamor se zapisujejo rezultati (privzeto rezultati3.csv)
+    """
+    for n in range(n_od, n_do + 1, korak):
+
+        testirani = set()  # kanonične oznake grafov, ki smo jih pri tem n že testirali
+        st_testiranih = 0
+        st_preskocenih = 0
+
+        # k teče od 2 do največjega k, za katerega velja 2k < n
+        for k in range(2, (n - 1) // 2 + 1):
+
+            G = posplosen_petersonov(n, k)
+
+            # kanonična oznaka: izomorfna grafa imata enak graph6 niz
+            oznaka = G.canonical_label().graph6_string()
+            if oznaka in testirani:
+                st_preskocenih += 1  # izomorfen že testiranemu P(n,l) -> preskočimo
+                continue
+            testirani.add(oznaka)
+
+            zapis_csv(
+                G,
+                druzina="posplosen_petersen",
+                parametri=f"n={n},k={k}",
+                metoda="SAT",
+                pot_csv=pot_csv
+            )
+            st_testiranih += 1
+
+        print(
+            f"n = {n} ({2*n} vozlišč): testiranih {st_testiranih}, "
+            f"preskočenih izomorfnih {st_preskocenih}",
+            flush=True
+        )
 
 
 
