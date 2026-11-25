@@ -88,7 +88,8 @@ CSV_POT = KOREN_PROJEKTA / "rezultati" / "rezultati.csv"
 CSV_POT1 = KOREN_PROJEKTA / "rezultati" / "rezultati1.csv"
 CSV_POT2 = KOREN_PROJEKTA / "rezultati" / "rezultati2.csv"
 CSV_POT3 = KOREN_PROJEKTA / "rezultati" / "rezultati3.csv"
-CSV_POT4 = KOREN_PROJEKTA / "rezultati" / "rezultati4.csv"
+CSV_POT4_k = KOREN_PROJEKTA / "rezultati" / "rezultati4_k.csv"
+CSV_POT4_s = KOREN_PROJEKTA / "rezultati" / "rezultati4_s.csv"
 CSV_POT5 = KOREN_PROJEKTA / "rezultati" / "rezultati5.csv"
 
 

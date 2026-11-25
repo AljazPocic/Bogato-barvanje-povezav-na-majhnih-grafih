@@ -1,6 +1,6 @@
 # klicanje funkcij in dodajanje
 from src.subkubicni import prizma, posplosen_petersonov, mobiusova_lestev, ravninski_kubicni, ravninski_subkubicni, fulereni
-from src.funkcije import CSV_POT1, CSV_POT2, CSV_POT3, CSV_POT4, CSV_POT5, zapis_csv
+from src.funkcije import CSV_POT1, CSV_POT2, CSV_POT3, CSV_POT4_k, CSV_POT4_s, CSV_POT5, zapis_csv
 
 ##########################################################################################################################
 # PRIZME
@@ -119,46 +119,55 @@ def testiraj_petersen(n_od, n_do, korak=1, pot_csv=CSV_POT3):
 
 
 ##########################################################################################################################
-# RAVNINSKI SUBKUBIČNI IN KUBIČNI GRAFI
+# RAVNINSKI KUBIČNI GRAFI
 
 
-# for n in range(4, 11):
-# 
-#     for i, G in enumerate(ravninski_subkubicni(n), start=1):
-# 
-#         for metoda in ("ILP", "SAT"):
-# 
-#             zapis_csv(
-#                 G,
-#                 druzina="ravninski_subkubicni",
-#                 parametri=f"n={n}, graf={i}",
-#                 metoda=metoda,
-#                 pot_csv=CSV_POT4
-#             )
-#         print (f"Št. vozlišč:{n}")
+#kubični graf mora imeti sodo število n, vsaj 4
+def testiraj_ravninske_kubicne(n_od, n_do, korak=2, pot_csv=CSV_POT4_k):
+    for n in range(n_od, n_do + 1, korak):
 
+        for i, G in enumerate(ravninski_kubicni(n), start=1):
 
+            for metoda in ("ILP", "SAT"):
 
-# kubični graf mora imeti sodo število n, vsaj 4
-# for n in range(4, 21, 2): # n bodo soda števila med 4 in 20
-# 
-#     for i, G in enumerate(ravninski_kubicni(n), start=1):
-# 
-#         for metoda in ("ILP", "SAT"):
-# 
-#             zapis_csv(
-#                 G,
-#                 druzina="ravninski_kubicni",
-#                 parametri=f"n={n},graf={i}",
-#                 metoda=metoda,
-#                 pot_csv=CSV_POT4
-#             )
-#  
-#     print(f"Število vozlišč: {n}")
+                zapis_csv(
+                    G,
+                    druzina="ravninski_kubicni",
+                    parametri=f"n={n},graf={i}",
+                    metoda=metoda,
+                    pot_csv=pot_csv
+                )
+    
+        print(f"Število vozlišč: {n}")
 
 # opravljeno testiranje za kubične ravninske grafe s 4, 6, 8, 10, 12, 14, 16, 18 in 20 vozlišči
-# rezultati so shranjeni v "rezultati4.csv"
+# rezultati so shranjeni v "rezultati4_k.csv"
 
+
+##########################################################################################################################
+# RAVNINSKI SUBKUBIČNI GRAFI  
+
+# za subkubične ravninske grafe bomo uporabili spodnjo funkcijo(samo SAT, ker je hitrejša)
+# pri tem se bodo nekateri grafi ponovili s tistimi zgoraj, ker med subkubične spadajo tudi kubični
+
+def testiraj_ravninske_subkubicne(n_od, n_do, korak=1, pot_csv=CSV_POT4_s):
+    for n in range(n_od, n_do + 1, korak):
+
+        for i, G in enumerate(ravninski_subkubicni(n), start=1):
+
+            zapis_csv(
+                G,
+                druzina="ravninski_subkubicni",
+                parametri=f"n={n},graf={i}",
+                metoda="SAT",
+                pot_csv=pot_csv
+            )
+
+        print(f"Število vozlišč: {n}")
+
+
+# opravljeno testiranje za ravninske subkubične grafe z vozlišči od 4 do 12
+# rezultati so shranjeni v "rezultati4_s.csv"
 
 
 
