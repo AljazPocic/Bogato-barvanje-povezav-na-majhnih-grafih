@@ -9,27 +9,31 @@ from sage.all import graphs, Graph
 # rabimo pazit da se nam tukaj grafi ne bodo ponavljali 
 
 
+# ročno napisana različica
+# def prizma(n): # n bo število vozlišč, ki ga bo imel vsak od dveh ciklov (torej skupno 2n vozlišč)
+#     """Generira prizmatični graf z 2n vozlišči."""
+#     if n < 3:
+#         raise ValueError("n mora biti vsaj 3.")
+#     G = Graph() # ustvarimo prazen graf
+#     # dodamo vozlišča:
+#     for i in range(n): # zaporedna številka vozlišča
+#         for j in (0, 1): # kateremu ciklu bo pripadalo vozlišče
+#             G.add_vertex((i, j))
+#     # dobimo dva cikla, ki ju moramo povezati
+#     # dodamo povezave:
+#     for i in range(n):
+#         j = (i + 1) % n # trenutno vozlišče želimo povezati z naslednjim; zadnje vozlišče se poveže s prvim in sklene cikel
+#         G.add_edge((i, 0), (j, 0)) # povezave prvega cikla
+#         G.add_edge((i, 1), (j, 1)) # povezave drugega cikla
+#         G.add_edge((i, 0), (i, 1)) # Povezave med cikloma
+#     return G
+
+
 def prizma(n): # n bo število vozlišč, ki ga bo imel vsak od dveh ciklov (torej skupno 2n vozlišč)
-    """Generira prizmatični graf z 2n vozlišči."""
+    """Generira prizmatični graf C_n □ K_2 z 2n vozlišči."""
     if n < 3:
         raise ValueError("n mora biti vsaj 3.")
-    G = Graph() # ustvarimo prazen graf
-    # dodamo vozlišča:
-    for i in range(n): # zaporedna številka vozlišča
-        for j in (0, 1): # kateremu ciklu bo pripadalo vozlišče
-            G.add_vertex((i, j))
-    # dobimo dva cikla, ki ju moramo povezati
-    # dodamo povezave:
-    for i in range(n):
-        j = (i + 1) % n # trenutno vozlišče želimo povezati z naslednjim; zadnje vozlišče se poveže s prvim in sklene cikel
-        G.add_edge((i, 0), (j, 0)) # povezave prvega cikla    
-        G.add_edge((i, 1), (j, 1)) # povezave drugega cikla 
-        G.add_edge((i, 0), (i, 1)) # Povezave med cikloma
-    return G
-
-
-
-
+    return graphs.CircularLadderGraph(n)
 
 
 
