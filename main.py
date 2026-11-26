@@ -1,6 +1,6 @@
 # klicanje funkcij in dodajanje
-from src.subkubicni import prizma, posplosen_petersonov, mobiusova_lestev, ravninski_kubicni, ravninski_subkubicni, fulereni
-from src.funkcije import CSV_POT1, CSV_POT2, CSV_POT3, CSV_POT4_k, CSV_POT4_s, CSV_POT5, zapis_csv
+from src.subkubicni import prizma, posplosen_petersonov, mobiusova_lestev, ravninski_kubicni, ravninski_subkubicni, fulereni, snarks_4
+from src.funkcije import CSV_POT1, CSV_POT2, CSV_POT3, CSV_POT4_k, CSV_POT4_s, CSV_POT5, CSV_POT6, zapis_csv
 
 ##########################################################################################################################
 # PRIZME
@@ -123,12 +123,12 @@ def testiraj_petersen(n_od, n_do, korak=1, pot_csv=CSV_POT3):
 
 
 #kubični graf mora imeti sodo število n, vsaj 4
-def testiraj_ravninske_kubicne(n_od, n_do, korak=2, pot_csv=CSV_POT4_k):
+def testiraj_ravninske_kubicne(n_od, n_do, korak=2, pot_csv=CSV_POT4_k, metode=("ILP", "SAT")):
     for n in range(n_od, n_do + 1, korak):
 
         for i, G in enumerate(ravninski_kubicni(n), start=1):
 
-            for metoda in ("ILP", "SAT"):
+            for metoda in metode:
 
                 zapis_csv(
                     G,
@@ -142,6 +142,8 @@ def testiraj_ravninske_kubicne(n_od, n_do, korak=2, pot_csv=CSV_POT4_k):
 
 # opravljeno testiranje za kubične ravninske grafe s 4, 6, 8, 10, 12, 14, 16, 18 in 20 vozlišči
 # rezultati so shranjeni v "rezultati4_k.csv"
+
+# z metodo SAT je bilo opravljeno testiranje za kubične ravninske grafe s 22 vozlišči(testiranje ročno prekinjeno po 128 864 grafih)
 
 
 ##########################################################################################################################
@@ -172,6 +174,7 @@ def testiraj_ravninske_subkubicne(n_od, n_do, korak=1, pot_csv=CSV_POT4_s):
 
 
 
+
 ##########################################################################################################################
 # FULERENI
 # potrebno je instalirati paket "buckygen"
@@ -183,6 +186,25 @@ def testiraj_ravninske_subkubicne(n_od, n_do, korak=1, pot_csv=CSV_POT4_s):
 
 ##########################################################################################################################
 # SNARKI
-# tbd
+# uporabimo SAT, saj je hitrejša od ILP
 
+def testiraj_snarke(pot_csv=CSV_POT6, metode=("SAT",)):
 
+    for n, grafi in snarks_4:
+
+        for i, G in enumerate(grafi, start=1):
+
+            for metoda in metode:
+
+                zapis_csv(
+                    G,
+                    druzina="snark",
+                    parametri=f"n={n},graf={i}",
+                    metoda=metoda,
+                    pot_csv=pot_csv
+                )
+
+        print(f"Število vozlišč: {n}")
+
+# opravljeno je bilo testiranje za snarke z girth >= 4 z 10, 18, 20, 22, 24, 26 vozlišči
+# rezultati so shranjeni v "rezultati6.csv"
