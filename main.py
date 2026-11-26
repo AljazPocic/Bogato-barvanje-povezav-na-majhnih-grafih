@@ -206,5 +206,5 @@ def testiraj_snarke(pot_csv=CSV_POT6, metode=("SAT",)):
 
         print(f"Število vozlišč: {n}")
 
-# opravljeno je bilo testiranje za snarke z girth >= 4 z 10, 18, 20, 22, 24, 26 vozlišči
+# opravljeno je bilo testiranje za snarke z obsegom več ali enako 4, z 10, 18, 20, 22, 24, 26 vozlišči
 # rezultati so shranjeni v "rezultati6.csv"
