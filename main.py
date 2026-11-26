@@ -143,7 +143,7 @@ def testiraj_ravninske_kubicne(n_od, n_do, korak=2, pot_csv=CSV_POT4_k, metode=(
 # opravljeno testiranje za kubične ravninske grafe s 4, 6, 8, 10, 12, 14, 16, 18 in 20 vozlišči
 # rezultati so shranjeni v "rezultati4_k.csv"
 
-# z metodo SAT je bilo opravljeno testiranje za kubične ravninske grafe s 22 vozlišči(testiranje ročno prekinjeno po 128 864 grafih)
+# z metodo SAT je bilo opravljeno testiranje za kubične ravninske grafe s 22 vozlišči(testiranje ročno prekinjeno po 129 620 grafih)
 
 
 ##########################################################################################################################
