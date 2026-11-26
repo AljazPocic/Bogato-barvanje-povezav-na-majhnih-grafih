@@ -127,7 +127,32 @@ def fulereni(n):
 
 ##########################################################################################################################
 # SNARKI
-# tbd
 
 
+def read_snarks(datoteka):
+    graphs_list = []
 
+    with open(datoteka, "r") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                G = Graph(line, format="graph6")
+                graphs_list.append(G)
+
+    return graphs_list
+
+snarks10_4 = read_snarks("podatki/snarks10_4.g6")
+snarks18_4 = read_snarks("podatki/snarks18_4.g6")
+snarks20_4 = read_snarks("podatki/snarks20_4.g6")
+snarks22_4 = read_snarks("podatki/snarks22_4.g6")
+snarks24_4 = read_snarks("podatki/snarks24_4.g6")
+snarks26_4 = read_snarks("podatki/snarks26_4.g6")
+
+snarks_4 = [
+        (10, snarks10_4),
+        (18, snarks18_4),
+        (20, snarks20_4),
+        (22, snarks22_4),
+        (24, snarks24_4),
+        (26, snarks26_4)
+    ]

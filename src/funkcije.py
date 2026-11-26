@@ -91,6 +91,7 @@ CSV_POT3 = KOREN_PROJEKTA / "rezultati" / "rezultati3.csv"
 CSV_POT4_k = KOREN_PROJEKTA / "rezultati" / "rezultati4_k.csv"
 CSV_POT4_s = KOREN_PROJEKTA / "rezultati" / "rezultati4_s.csv"
 CSV_POT5 = KOREN_PROJEKTA / "rezultati" / "rezultati5.csv"
+CSV_POT6 = KOREN_PROJEKTA / "rezultati" / "rezultati6.csv"
 
 
 def shrani_v_csv(vrstica, pot=CSV_POT):
