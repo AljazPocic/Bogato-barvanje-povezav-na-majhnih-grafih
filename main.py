@@ -54,11 +54,29 @@ def testiraj_prizme(n_od, n_do, korak=1, pot_csv=CSV_POT1):
 ##########################################################################################################################
 # MÖBIUSOVE LESTVE(CIRKULANTI C_(2n)(1,n))
 
+def testiraj_mobiusove_lestve(n_od, n_do, korak=1, pot_csv=CSV_POT2):
+    """ Testira Möbiusove lestve C_(2n)(1,n)
 
+    n_od, n_do : najmanjša in največja dolžina cikla n (OBE meji sta vključeni);
+                 prizma z dolžino cikla n ima 2n vozlišč, n mora biti vsaj 3
+    korak      : razmik med zaporednimi n (privzeto 1)
+    pot_csv    : CSV datoteka, kamor se zapisujejo rezultati (privzeto rezultati1.csv)
+    """
+    for n in range(n_od, n_do + 1, korak):
+        G = mobiusova_lestev(n)
 
+        zapis_csv(
+            G,
+            druzina="mobiusova_lestev",
+            parametri=f"n={n}",
+            metoda="ILP",
+            pot_csv=pot_csv
+            )
 
+        print(f"Möbiusova lestev n={n}, število vozlišč: {2*n}", flush=True)
 
-
+# opravljeno testiranje za Möbiusove lestve z vozlišči od 3 do 33
+# rezultati so shranjeni v "rezultati2.csv"
 
 
 ##########################################################################################################################
@@ -179,10 +197,41 @@ def testiraj_ravninske_subkubicne(n_od, n_do, korak=1, pot_csv=CSV_POT4_s):
 # FULERENI
 # potrebno je instalirati paket "buckygen"
 
+# Fulerenski grafi imajo:
+#- sodo število vozlišč,
+#- najmanj 20 vozlišč,
+#- 22 vozlišč ni dovoljenih,
+#- vsa vozlišča imajo stopnjo 3.
+
+def testiraj_fulereni(n_od, n_do, korak=2, pot_csv=CSV_POT5):
+    """Testira fulerenske grafe z metodama SAT in ILP."""
+
+    for n in range(n_od, n_do + 1, korak):
+        if n < 20 or n > 254 or n % 2 != 0 or n == 22:
+            print(f"Preskočimo n={n}: neveljavna velikost za fuleren.")
+            continue
+
+        G_generirani = fulereni(n)
+
+        st_testiranih = 0
+
+        for i, G in enumerate(G_generirani, start=1):
+            for metoda in ["ILP", "SAT"]:
+                zapis_csv(
+                    G,
+                    druzina="fuleren",
+                    parametri=f"n={n},graf={i}",
+                    metoda=metoda,
+                    pot_csv=pot_csv
+                )
+
+            st_testiranih += 1
+
+        print(f"Fulereni n={n}: testiranih {st_testiranih} grafov", flush=True)
 
 
-
-
+# opravljeno testiranje za fulerene z vozlišči od 2 do 42
+# rezultati so shranjeni v "rezultati5.csv"
 
 ##########################################################################################################################
 # SNARKI
