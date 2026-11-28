@@ -147,6 +147,7 @@ snarks20_4 = read_snarks("podatki/snarks20_4.g6")
 snarks22_4 = read_snarks("podatki/snarks22_4.g6")
 snarks24_4 = read_snarks("podatki/snarks24_4.g6")
 snarks26_4 = read_snarks("podatki/snarks26_4.g6")
+snarks28_4 = read_snarks("podatki/snarks28_4.g6")
 
 snarks_4 = [
         (10, snarks10_4),
@@ -154,5 +155,6 @@ snarks_4 = [
         (20, snarks20_4),
         (22, snarks22_4),
         (24, snarks24_4),
-        (26, snarks26_4)
+        (26, snarks26_4),
+        (28, snarks28_4)
     ]
